@@ -19,6 +19,7 @@
         android:ems="10"
         android:hint="E-mail"
         android:inputType="textEmailAddress"
+        android:paddingLeft="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,6 +33,7 @@
         android:ems="10"
         android:hint="Senha"
         android:inputType="textPassword"
+        android:paddingLeft="16dp"
         app:layout_constraintEnd_toEndOf="@+id/email_eddittext_login"
         app:layout_constraintStart_toStartOf="@+id/email_eddittext_login"
         app:layout_constraintTop_toBottomOf="@+id/email_eddittext_login" />
