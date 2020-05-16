@@ -9,7 +9,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,12 +24,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         //Configurando o Listener para realizar o login
-        ja_possui_uma_conta_textview.setOnClickListener {
+        already_have_accout_textview.setOnClickListener {
 
-                Log.d("MainActivity", "Try do show login activity ")
+                Log.d("RegisterActivity", "Try do show login activity ")
 
                 val intent = Intent(this, LoginActivity::class.java )
                 startActivity(intent)
+
+        }
+        selectphoto_button_register.setOnClickListener {
 
         }
 
