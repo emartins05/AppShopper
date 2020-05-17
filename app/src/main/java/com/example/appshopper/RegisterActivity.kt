@@ -9,20 +9,17 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
-import androidx.annotation.StringDef
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.activity_main.*
-import java.nio.channels.SelectableChannel
+import kotlinx.android.synthetic.main.activity_register.*
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_register)
 
         //Configurando o botão para cadastrar um novo usuário
 
@@ -57,8 +54,11 @@ class RegisterActivity : AppCompatActivity() {
 
             selectedPhotoUri = data.data
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
-            val bitmapDrawable = BitmapDrawable(bitmap)
-            selectphoto_button_register.setBackgroundDrawable(bitmapDrawable)
+
+            selectphoto_imageview_register.setImageBitmap(bitmap)
+            selectphoto_button_register.alpha = 0f
+          //  val bitmapDrawable = BitmapDrawable(bitmap)
+           // selectphoto_button_register.setBackgroundDrawable(bitmapDrawable)
         }
     }
 
@@ -70,6 +70,11 @@ class RegisterActivity : AppCompatActivity() {
         val dateofbirth = dateofbirth_edittext_register.text.toString()
 
         ///Validando todos os campos para prosseguir no cadastro do novo usuário no  banco
+        if(selectedPhotoUri == null){
+            Toast.makeText(this, "Por favor, insira uma foto para fazer o cadastro!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         if(email.isEmpty() || password.isEmpty() || username.isEmpty() || dateofbirth.isEmpty()){
             Toast.makeText(this, "Por favor, preencha todos os campos para concluir seu cadastro!", Toast.LENGTH_SHORT).show()
             return
@@ -123,6 +128,11 @@ class RegisterActivity : AppCompatActivity() {
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("RegisterActivity", "Finally we save the user on Firebase Database")
+
+                val intent = Intent(this,LatestItensActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+
             }
     }
 
