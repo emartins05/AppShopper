@@ -20,19 +20,17 @@ class FavoritedActivity : AppCompatActivity() {
 
         val adapter = GroupAdapter<com.xwray.groupie.ViewHolder>()
 
-        adapter.add(UserItem())
-        adapter.add(UserItem())
-        adapter.add(UserItem())
-        adapter.add(UserItem())
+        adapter.add(UserItemFavorite())
+        adapter.add(UserItemFavorite())
+        adapter.add(UserItemFavorite())
+        adapter.add(UserItemFavorite())
 
 
         recyclerview_favorited.adapter = adapter
-
-
     }
 }
 
-class UserItem : Item<ViewHolder>(){
+class UserItemFavorite : Item<ViewHolder>(){
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
         //will be called in our list for each user object later on...
