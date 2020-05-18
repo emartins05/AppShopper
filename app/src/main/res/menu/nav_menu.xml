@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app = "http://schemas.android.com/apk/res-auto">
 
-
     <item android:id="@+id/search"
         android:title="Buscar"
         app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always"
+        />
 
     <item android:id="@+id/favoriteds"
             android:title="Favoritos"
-             app:showAsAction="ifRoom" />
+             app:showAsAction="always" />
 
     <item android:id="@+id/edditUser_regData"
         android:title="CADASTRO"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item android:id="@+id/menu_sign_out"
             android:title="SAIR"
-            app:showAsAction="ifRoom" />
+            app:showAsAction="always" />
 
 
 

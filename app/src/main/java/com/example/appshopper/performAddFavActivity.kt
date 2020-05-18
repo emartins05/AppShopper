@@ -19,12 +19,12 @@ class performAddFavActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_perform_add_favorites)
         val title = intent.getStringExtra(LatestItensActivity.USER_KEY)
-        supportActionBar?.title = "Adicionado aos Favoritos :)"
+        supportActionBar?.title = "Added to your Favs :)"
 
         val uid = FirebaseAuth.getInstance().uid ?:""
 
         title_favorited_done_textview.text = title
-        title_favorited_done_uid_textview.text= uid
+     //   title_favorited_done_uid_textview.text= uid
         val data = UserToSaveFav(
             title,
             uid )

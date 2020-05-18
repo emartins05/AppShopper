@@ -8,19 +8,12 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="358dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="16dp"
         android:text="texto"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="61dp"
-        />
+        android:textSize="25sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="22dp" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="142dp"
-        tools:layout_editor_absoluteY="43dp"
-         />
 </androidx.constraintlayout.widget.ConstraintLayout>

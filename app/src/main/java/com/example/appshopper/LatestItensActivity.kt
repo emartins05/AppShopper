@@ -1,28 +1,32 @@
 package com.example.appshopper
 
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
+import android.view.*
+import android.widget.EditText
+import android.widget.SearchView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
+import androidx.recyclerview.widget.RecyclerView
 import com.example.appshopper.model.Users
 import com.example.appshopper.registration.RegisterActivity
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.activity_latest_itens.*
-import kotlinx.android.synthetic.main.data_row_latest_itens.*
 import kotlinx.android.synthetic.main.data_row_latest_itens.view.*
-import kotlinx.android.synthetic.main.data_row_latest_itens.view.imageButton5
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 class LatestItensActivity : AppCompatActivity() {
 
@@ -57,12 +61,12 @@ class LatestItensActivity : AppCompatActivity() {
          val api = retrofit.create(ApiService::class.java)
             api.fetchAllUsers().enqueue(object : Callback<List<Users>>{
              override fun onResponse(call: Call<List<Users>>, response: Response<List<Users>>) {
-                 for (i in 0..50){
-
+                 for (i in 0..40){
                      auxiliar = "${response.body()!![i].title}"
                      auxiliar2= "${response.body()!![i].thumbnailUrl}"
 
                      adapter.add(UserItem("${auxiliar2}","${auxiliar}"))
+
                  }
 
 
@@ -74,7 +78,6 @@ class LatestItensActivity : AppCompatActivity() {
                     intent.putExtra(USER_KEY,"${userItem.title}")
                    //  intent.putExtra( USER_KEY, userItem)
                      startActivity(intent)
-
                     }
 
                     latest_itens_recycle_view.adapter = adapter
@@ -124,10 +127,47 @@ class LatestItensActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.nav_menu, menu)
+
+        val searchItem = menu?.findItem(R.id.search)
+        if (searchItem != null) {
+            val searchView = searchItem.actionView as SearchView
+            val editext = searchView.findViewById<SearchView>(R.id.search)
+            editext.queryHint = "Search here"
+        }
+
+        val manager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchItens = if (menu != null) menu.findItem(R.id.search) else null
+        val searchView = searchItem?.actionView as SearchView
+
+        searchView.setSearchableInfo(manager.getSearchableInfo(componentName))
+
+        searchView.setOnQueryTextFocusChangeListener(object:SearchView.OnQueryTextListener,
+            View.OnFocusChangeListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+               searchView.clearFocus()
+                searchView.setQuery("",false)
+                searchItem.collapseActionView()
+                Toast.makeText(this@LatestItensActivity, "Buscando por ${query}", Toast.LENGTH_LONG).show()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+
+            override fun onFocusChange(v: View?, hasFocus: Boolean) {
+               //nothing to do
+            }
+        })
+
         return super.onCreateOptionsMenu(menu)
     }
 
-}
+
+
+
+
+
 
 
 
@@ -145,6 +185,8 @@ class UserItem(val thumbnailURL: String, val title : String): Item<ViewHolder>()
        return R.layout.data_row_latest_itens
     }
 
+
+}
 
 }
 
