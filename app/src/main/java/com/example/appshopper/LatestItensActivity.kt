@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appshopper.model.Users
+import com.example.appshopper.registration.ChangeDataReg
 import com.example.appshopper.registration.RegisterActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
@@ -113,6 +114,13 @@ class LatestItensActivity : AppCompatActivity() {
             val intent  = Intent(this, FavoritedActivity::class.java)
                 startActivity(intent)
             }
+
+            R.id.edditUser_regData ->{
+                val intent  = Intent(this, ChangeDataReg::class.java)
+                startActivity(intent)
+
+            }
+
            R.id.menu_sign_out ->{
                 FirebaseAuth.getInstance().signOut()
                 val intent = Intent(this, RegisterActivity::class.java)
@@ -162,12 +170,6 @@ class LatestItensActivity : AppCompatActivity() {
 
         return super.onCreateOptionsMenu(menu)
     }
-
-
-
-
-
-
 
 
 
