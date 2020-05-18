@@ -116,6 +116,7 @@
         app:civ_border_color="#7171F8"
         android:layout_width="122dp"
         android:layout_height="117dp"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="@+id/selectphoto_button_register"
         app:layout_constraintEnd_toEndOf="@+id/selectphoto_button_register"
         app:layout_constraintStart_toStartOf="@+id/selectphoto_button_register"

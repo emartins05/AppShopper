@@ -8,10 +8,10 @@
     tools:context=".registration.ChangeDataReg">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/Mensagem_textView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Para alterarar seu cadastro é necessário preencher todos os campos"
+        android:text="Para alterar seu cadastro é necessário preencher todos os campos"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.482"
@@ -19,21 +19,47 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/editText5_name_box"
         android:layout_width="238dp"
         android:layout_height="74dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="104dp"
         android:background="@drawable/rounded_corner"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintHorizontal_bias="0.429"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintEnd_toEndOf="@+id/Mensagem_textView2"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/Mensagem_textView2"
+        app:layout_constraintTop_toBottomOf="@+id/Mensagem_textView2" />
+
+    <Button
+        android:id="@+id/selectphoto_button_register_change_data"
+        android:layout_width="98dp"
+        android:layout_height="77dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/button_circle_corner"
+        android:text="Selecionar Foto"
+        android:textColor="#F6FAFA"
+        app:layout_constraintBottom_toTopOf="@+id/username_edittext_register"
+        app:layout_constraintEnd_toEndOf="@+id/Mensagem_textView2"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="@+id/Mensagem_textView2"
+        app:layout_constraintTop_toBottomOf="@+id/Mensagem_textView2" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/selectphoto_imageview_update"
+        android:layout_width="86dp"
+        android:layout_height="81dp"
+        android:background="#FAF9FD"
+        app:civ_border_color="#7171F8"
+        app:civ_border_width="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/selectphoto_button_register_change_data"
+        app:layout_constraintEnd_toEndOf="@+id/selectphoto_button_register_change_data"
+        app:layout_constraintStart_toStartOf="@+id/selectphoto_button_register_change_data"
+        app:layout_constraintTop_toTopOf="@+id/selectphoto_button_register_change_data" />
 
     <EditText
-        android:id="@+id/editText9"
+        android:id="@+id/editText9_email_box"
         android:layout_width="240dp"
         android:layout_height="71dp"
         android:layout_marginTop="28dp"
@@ -41,13 +67,13 @@
         android:ems="10"
         android:hint="E-mail"
         android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="@+id/editText5"
+        app:layout_constraintEnd_toEndOf="@+id/editText5_name_box"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editText5"
-        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+        app:layout_constraintStart_toStartOf="@+id/editText5_name_box"
+        app:layout_constraintTop_toBottomOf="@+id/editText5_name_box" />
 
     <EditText
-        android:id="@+id/editText10"
+        android:id="@+id/editText10_password_box"
         android:layout_width="242dp"
         android:layout_height="71dp"
         android:layout_marginTop="20dp"
@@ -55,13 +81,13 @@
         android:ems="10"
         android:hint="Passowrd"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/editText9"
+        app:layout_constraintEnd_toEndOf="@+id/editText9_email_box"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editText9"
-        app:layout_constraintTop_toBottomOf="@+id/editText9" />
+        app:layout_constraintStart_toStartOf="@+id/editText9_email_box"
+        app:layout_constraintTop_toBottomOf="@+id/editText9_email_box" />
 
     <EditText
-        android:id="@+id/editText11"
+        android:id="@+id/editText11_Data_box"
         android:layout_width="242dp"
         android:layout_height="73dp"
         android:layout_marginTop="24dp"
@@ -70,21 +96,21 @@
 
         android:hint="Data de Nascimento"
         android:inputType="date"
-        app:layout_constraintEnd_toEndOf="@+id/editText10"
+        app:layout_constraintEnd_toEndOf="@+id/editText10_password_box"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/editText10"
-        app:layout_constraintTop_toBottomOf="@+id/editText10" />
+        app:layout_constraintStart_toStartOf="@+id/editText10_password_box"
+        app:layout_constraintTop_toBottomOf="@+id/editText10_password_box" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button2_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="108dp"
         android:background="@drawable/rounded_corner"
         android:text="Update"
-        app:layout_constraintEnd_toEndOf="@+id/editText11"
+        app:layout_constraintEnd_toEndOf="@+id/editText11_Data_box"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/editText11"
-        app:layout_constraintTop_toBottomOf="@+id/editText11" />
+        app:layout_constraintStart_toStartOf="@+id/editText11_Data_box"
+        app:layout_constraintTop_toBottomOf="@+id/editText11_Data_box" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
