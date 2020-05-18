@@ -1,33 +1,28 @@
 package com.example.appshopper
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.Toolbar
-import androidx.appcompat.app.ActionBar
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
+import com.example.appshopper.model.Users
+import com.example.appshopper.registration.RegisterActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
+import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.activity_latest_itens.*
+import kotlinx.android.synthetic.main.data_row_latest_itens.*
 import kotlinx.android.synthetic.main.data_row_latest_itens.view.*
+import kotlinx.android.synthetic.main.data_row_latest_itens.view.imageButton5
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.POST
 
 class LatestItensActivity : AppCompatActivity() {
 
@@ -39,10 +34,15 @@ class LatestItensActivity : AppCompatActivity() {
         verifyUserIsLoggedIn()
         //Se o usuário estiver logado, vamos consumir os dados da API
         if(userIsLoggedIn){
+            // Se o usuário estiver logado preenchemos a lista e monitoramos os possíveis favoritos
             fetchUsers()
         }
-
     }
+
+    companion object{
+        val USER_KEY = "USER_KEY"
+    }
+
      private fun fetchUsers(){
          var auxiliar: String
          var auxiliar2: String
@@ -55,21 +55,29 @@ class LatestItensActivity : AppCompatActivity() {
              .build()
 
          val api = retrofit.create(ApiService::class.java)
-         api.fetchAllUsers().enqueue(object : Callback<List<Users>>{
+            api.fetchAllUsers().enqueue(object : Callback<List<Users>>{
              override fun onResponse(call: Call<List<Users>>, response: Response<List<Users>>) {
-                 for (i in 0..500){
-                     // Log.d("jsontest"," Resposta do JSON ${response.body()!![i].email}")
-                     //   val rnds = (0..10).random()
+                 for (i in 0..50){
+
                      auxiliar = "${response.body()!![i].title}"
                      auxiliar2= "${response.body()!![i].thumbnailUrl}"
-                    // Log.d("jsontest"," Username do JSON ${response.body()!![i].username}")
-                   //  Log.d("jsontest"," Email do JSON ${response.body()!![i].email}")
 
-                     Log.d("jsontest"," title do JSON ${auxiliar}")
-                     Log.d("jsontest"," thumbnailURL do JSON ${auxiliar2}")
                      adapter.add(UserItem("${auxiliar2}","${auxiliar}"))
                  }
-                 latest_itens_recycle_view.adapter = adapter
+
+
+
+                 adapter.setOnItemClickListener { item, view ->
+                     val userItem = item as UserItem
+                     val intent = Intent(view.context, performAddFavActivity::class.java)
+                   //  intent.putExtra(USER_KEY,"${userItem.title}")
+                    intent.putExtra(USER_KEY,"${userItem.title}")
+                   //  intent.putExtra( USER_KEY, userItem)
+                     startActivity(intent)
+
+                    }
+
+                    latest_itens_recycle_view.adapter = adapter
 
              }
              override fun onFailure(call: Call<List<Users>>, t: Throwable) {
@@ -94,6 +102,8 @@ class LatestItensActivity : AppCompatActivity() {
 
     }
 
+
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item?.itemId){
             R.id.favoriteds -> {
@@ -117,13 +127,9 @@ class LatestItensActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-
-
 }
 
-class UserToFetch(val username:String, val email: String){
-    constructor() : this ("","")
-}
+
 
 class UserItem(val thumbnailURL: String, val title : String): Item<ViewHolder>(){
 

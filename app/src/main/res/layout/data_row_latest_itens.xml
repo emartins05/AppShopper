@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/title_name_row_latest_itens"
-        android:layout_width="255dp"
-        android:layout_height="57dp"
+        android:layout_width="286dp"
+        android:layout_height="49dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:background="#F9F7FB"
@@ -40,6 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/title_name_row_latest_itens"
         app:layout_constraintTop_toTopOf="@+id/title_name_row_latest_itens"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@android:drawable/btn_star_big_off" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

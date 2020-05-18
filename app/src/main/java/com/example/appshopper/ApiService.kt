@@ -1,5 +1,6 @@
 package com.example.appshopper
 
+import com.example.appshopper.model.Users
 import retrofit2.Call
 import retrofit2.http.GET
 

@@ -10,10 +10,14 @@
 
     <item android:id="@+id/favoriteds"
             android:title="Favoritos"
-             app:showAsAction="collapseActionView|ifRoom" />
+             app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/edditUser_regData"
+        android:title="CADASTRO"
+        app:showAsAction="ifRoom" />
 
     <item android:id="@+id/menu_sign_out"
-            android:title="Sair"
+            android:title="SAIR"
             app:showAsAction="ifRoom" />
 
 

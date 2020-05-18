@@ -1,4 +1,4 @@
-package com.example.appshopper
+package com.example.appshopper.model
 
 data class Users(
   // val name: String,
